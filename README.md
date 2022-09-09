@@ -1,42 +1,28 @@
-# CourseWork
+# Домашнее задание к лекции «Работа с PostgreSQL из Python»
 
-Программа:
+Создайте программу для управления клиентами на python.
 
-1. Получает фотографии из указанного альбома Vkontakte;
-2. Сохраняет полученные фотографии максимального размера(ширина/высота в пикселях) на Yandex Disk/Google Drive;
-3. Для имени фотографий используется количество лайков. Если количество лайков совпадает, добавляется дата публикации фотографии;
-4. Информация по фотографиям сохраняется в json-файл с результатами.
+Требуется хранить персональную информацию о клиентах:
 
-# Структура проекта
+- имя
+- фамилия
+- email
+- телефон
 
-* `google_drive` - функционал для работы с Google Drive;
-* `yandex_disk` - функционал для работы с Yandex Disk;
-* `progress_bar` - функционал прогресс-бара;
-* `vkontakte` - функционал для работы с Vkontakte;
-* `main` - главный модуль проекта.
+Сложность в том, что телефон у клиента может быть не один, а два, три и даже больше. А может и вообще не быть телефона (например, он не захотел его оставлять).
 
-Перед использованием необходимо заполнить соответствующими значенями файлы `tokens.ini` (токены для Vkontakte и Yandex Disk) и `cred.json` (данные для Google Drive)
-# Usage
+Вам необходимо разработать структуру БД для хранения информации и несколько функций на python для управления данными:
 
-```
-main.py [-h] [-file FILE] [-album_id ALBUM_ID] [-num NUM] {id,sn} identifier {yd,gd} save_folder
+1. Функция, создающая структуру БД (таблицы)
+1. Функция, позволяющая добавить нового клиента
+1. Функция, позволяющая добавить телефон для существующего клиента
+1. Функция, позволяющая изменить данные о клиенте
+1. Функция, позволяющая удалить телефон для существующего клиента
+1. Функция, позволяющая удалить существующего клиента
+1. Функция, позволяющая найти клиента по его данным (имени, фамилии, email-у или телефону)
 
-Get a photo from vk and save it to yandex disk or google drive.
+Функции выше являются обязательными, но это не значит что должны быть только они. При необходимости можете создавать дополнительные функции и классы.
 
-positional arguments:
-  {id,sn}             photo acquisition method: by owner id or by screen name
-  identifier          owner id or screen name
-  {yd,gd}             location for saving photos: Yandex Disk or Google drive
-  save_folder         path to the directory on Yandex Disk or Google Drive to save files
+Также предоставьте код, демонстрирующий работу всех написанных функций.
 
-optional arguments:
-  -h, --help          show this help message and exit
-  -file FILE          path to ini-file with tokens and api versions
-  -album_id ALBUM_ID  user album id
-  -num NUM            number of saved photos
-```
-Примеры:
-1. `python3.8 main.py id <user_id> yd <save_folder> -file=<file_name>.ini -album_id=<album_id> -num=10`  
-Программа возьмёт 10 фотографий пользователя `user_id` из альбома `album_id` и сохранит их на `Yandex Disk` в каталог `save_folder`. Токены считаются из файла `<file_name>.ini` 
-2. `python3.8 main.py sn <screen name> gd <save_folder>`  
-Программа возьмёт 5 (исп. значение по умолчанию) фотографий пользователя `screen name` из профиля (исп. значение по умолчанию) и сохранит их на `Google Drive` в каталог `save_folder`. Токены считаются из файла `tokens.ini` в корне проекта. 
+Результатом работы будет `.py` файл.
